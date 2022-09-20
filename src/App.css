@@ -1,0 +1,12 @@
+.container {
+    margin: 50px ;
+    overflow: hidden;
+    width: 90%;
+    text-align: center;
+    border: 2px solid rgb(161, 73, 73);
+    /* background-image: url(ecg_back.png); */
+    position: relative; 
+    height: 100%;
+    border-radius: 10px;
+
+  }
