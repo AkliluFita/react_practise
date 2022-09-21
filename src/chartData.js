@@ -1,68 +1,25 @@
 import { yaxisData } from "./yaxisData";
-// simple chart title ///////////////////////////////////////
-export const chartOptions = {
-  chart: {
-    height: 450,
-    width: "100%",
-    type: "bar",
-    background: "#f4f4f4",
-    foreColor: "#333",
-  },
-  plotOptions: {
-    bar: {
-      horizontal: false,
-    },
-  },
-  series: [
-    {
-      name: "Population",
-      data: [
-        8550405, 3971883, 2720546, 2296224, 1567442, 1563025, 1469845, 1394928,
-        1300092, 1026908,
-      ],
-    },
-  ],
-  xaxis: {
-    categories: [
-      "New York",
-      "Los Angeles",
-      "Chicago",
-      "Houston",
-      "Philadelphia",
-      "Phoenix",
-      "San Antonio",
-      "San Diego",
-      "Dallas",
-      "San Jose",
-    ],
-  },
-  fill: {
-    colors: ["#F44336"],
-  },
-  dataLabels: {
-    enabled: false,
-  },
-
-  title: {
-    text: "Largest US Cities By Population",
-    align: "center",
-    margin: 20,
-    offsetY: 20,
-    style: {
-      fontSize: "25px",
-    },
-  },
-};
 
 // ECG chart /////////////////////////////////////////////////
 
-// function to display xaxis nums from  4 to 3982 with 117 steps
+// function one to display xaxis nums from  4 to 3982 with 117 steps
 const start = 4;
 const end = 116800;
 const step = 117;
 const arrayLength = Math.floor((end - start) / step) + 1;
-const range = [...Array(arrayLength).keys()].map((x) => x * step + start);
-console.log(range);
+export const xaxisDataList = [...Array(arrayLength).keys()].map(
+  (x) => x * step + start
+);
+console.log(xaxisDataList);
+
+// function two to display xaxis nums from  4 to 3982 with 117 steps
+// function range(start, end) {
+//   return Array(end - start + 1)
+//     .fill()
+//     .map((_, idx) => start + idx);
+// }
+// export const xaxisDataList = range(4, 3982); //list 4 up to 3982
+// console.log(xaxisDataList);
 
 // function to display yaxis data up to 1000
 function toPlainString(num) {
@@ -79,6 +36,15 @@ function toPlainString(num) {
 const yaxisDataList = yaxisData.map((num) => toPlainString(num));
 console.log(yaxisDataList);
 
+// function to exclude b/n two given numbers//////////
+export function excludeInterval(nums, a, b) {
+  const excludeNums = nums.filter((n) => n >= a && n <= b); //exclude numbers
+  return nums.filter((n) => !excludeNums.includes(n)); //then includes numbers
+}
+
+// const newXaxisDataList = excludeInterval(xaxisDataList, 50, 51);
+// console.log(newXaxisDataList);
+
 // chart prop
 export const ecgChartOpt = {
   options: {
@@ -88,9 +54,35 @@ export const ecgChartOpt = {
       type: "line",
       background: "#f4f4f4",
       foreColor: "#333",
+      toolbar: {
+        show: true,
+      },
     },
     xaxis: {
-      categories: range,
+      types: "numeric",
+      categories: xaxisDataList,
+      tickAmount: 30,
+      // tickPlacement: "on",
+      min: 4,
+      max: 1003,
+      // range: 35,
+      labels: {
+        show: true,
+        rotate: -45,
+        rotateAlways: false,
+        hideOverlappingLabels: true,
+        showDuplicates: false,
+        trim: false,
+        minHeight: 20,
+        maxHeight: 120,
+        style: {
+          colors: [],
+          fontSize: "12px",
+          fontFamily: "Helvetica, Arial, sans-serif",
+          fontWeight: 400,
+          cssClass: "apexcharts-xaxis-label",
+        },
+      },
     },
     title: {
       text: "ECG Chart",
@@ -104,6 +96,37 @@ export const ecgChartOpt = {
         fontWeight: "bold",
         fontFamily: undefined,
         color: "#263238",
+      },
+    },
+
+    grid: {
+      show: true,
+      borderColor: "#90A4AE",
+      strokeDashArray: 0,
+      position: "back",
+      xaxis: {
+        lines: {
+          show: true,
+        },
+      },
+      yaxis: {
+        lines: {
+          show: true,
+        },
+      },
+      row: {
+        colors: "black",
+        opacity: 0.5,
+      },
+      column: {
+        colors: "black",
+        opacity: 0.5,
+      },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       },
     },
   },

@@ -3,10 +3,65 @@
     overflow: hidden;
     width: 90%;
     text-align: center;
-    border: 2px solid rgb(161, 73, 73);
+    border: none;
     /* background-image: url(ecg_back.png); */
     position: relative; 
     height: 100%;
     border-radius: 10px;
+    box-shadow: 4px 4px 2px 1px rgba(128, 124, 121, 0.43);
 
+  }
+
+  .setting{
+    margin: 50px ;
+    overflow: hidden;
+    width: 35%;
+    /* text-align: center; */
+    box-shadow: 4px 4px 2px 1px rgba(128, 124, 121, 0.43);
+    border-radius: 10px;
+  }
+
+  .setting_container{
+   height: 160px;
+    padding: 15px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    /* align-items: center; */
+  }
+
+  .input_control{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn{
+    padding: 5px;
+    border: none;
+    background-color: rgb(135, 198, 214);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: rgb(91, 120, 128);
+  }
+
+  .btn_ref{
+    padding: 5px;
+    border: none;
+    background-color: rgb(135, 198, 214);
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+  }
+
+  .btn_ref:hover{
+    background-color: rgb(91, 120, 128);
+  }
+
+  .msg{
+    color: red;
   }
