@@ -32,7 +32,7 @@ function EcgChart({ stateChartOpt }) {
           rel="noopener noreferrer"
           target="_blank"
         >
-          Look at myb Github
+          Look at my Github
         </a>
       </button>
     </div>

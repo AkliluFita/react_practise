@@ -3,23 +3,23 @@ import { yaxisData } from "./yaxisData";
 // ECG chart /////////////////////////////////////////////////
 
 // function one to display xaxis nums from  4 to 3982 with 117 steps
-const start = 4;
-const end = 116800;
-const step = 117;
-const arrayLength = Math.floor((end - start) / step) + 1;
-export const xaxisDataList = [...Array(arrayLength).keys()].map(
-  (x) => x * step + start
-);
-console.log(xaxisDataList);
+// const start = 4;
+// const end = 116800;
+// const step = 117;
+// const arrayLength = Math.floor((end - start) / step) + 1;
+// const xaxisDataList = [...Array(arrayLength).keys()].map(
+//   (x) => x * step + start
+// );
+// console.log(xaxisDataList);
 
 // function two to display xaxis nums from  4 to 3982 with 117 steps
-// function range(start, end) {
-//   return Array(end - start + 1)
-//     .fill()
-//     .map((_, idx) => start + idx);
-// }
-// export const xaxisDataList = range(4, 3982); //list 4 up to 3982
-// console.log(xaxisDataList);
+function range(start, end) {
+  return Array(end - start + 1)
+    .fill()
+    .map((_, idx) => start + idx);
+}
+export const xaxisDataList = range(4, 3982); //list 4 up to 3982
+console.log(xaxisDataList);
 
 // function to display yaxis data up to 1000
 function toPlainString(num) {
@@ -42,10 +42,34 @@ export function excludeInterval(nums, a, b) {
   return nums.filter((n) => !excludeNums.includes(n)); //then includes numbers
 }
 
+// eg
 // const newXaxisDataList = excludeInterval(xaxisDataList, 50, 51);
 // console.log(newXaxisDataList);
 
-// chart prop
+// getting the mouse selected x-axis value event function
+export var dataPointValue = 0; //global variable
+console.log(dataPointValue);
+export var value1 = 0;
+export var value2 = 0;
+
+const catchData1 = (n) => {
+  if (value2 === 0) value1 = n + 4;
+};
+
+const catchData2 = (n) => {
+  if (value1 > 0) value2 = n + 4;
+};
+
+console.log(value1);
+
+const xaxisDataPoint = function (event, chartContext, config) {
+  dataPointValue = config.dataPointIndex;
+  console.log(dataPointValue);
+  catchData1(dataPointValue);
+  catchData2(dataPointValue);
+};
+
+// chart objects and its prop
 export const ecgChartOpt = {
   options: {
     chart: {
@@ -57,7 +81,14 @@ export const ecgChartOpt = {
       toolbar: {
         show: true,
       },
+
+      // new added for events
+      events: {
+        dataPointSelection: xaxisDataPoint,
+      },
     },
+
+    // xaxis data
     xaxis: {
       types: "numeric",
       categories: xaxisDataList,
@@ -129,8 +160,19 @@ export const ecgChartOpt = {
         left: 0,
       },
     },
+
+    // new added prop
+    markers: {
+      size: 1,
+    },
+
+    tooltip: {
+      intersect: true,
+      shared: false,
+    },
   },
 
+  // yaxis data
   series: [
     {
       name: "ECG Chart",
@@ -138,3 +180,8 @@ export const ecgChartOpt = {
     },
   ],
 };
+
+///////
+// console.log(ecgChartOpt.options.chart.events.dataPointSelection);
+// var xaxisValueData = xaxisDataPoint();
+// console.log(xaxisValueData);

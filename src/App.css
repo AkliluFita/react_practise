@@ -1,7 +1,7 @@
 .container {
     margin: 50px ;
     overflow: hidden;
-    width: 90%;
+    max-width: 90%;
     text-align: center;
     border: none;
     /* background-image: url(ecg_back.png); */
@@ -15,14 +15,14 @@
   .setting{
     margin: 50px ;
     overflow: hidden;
-    width: 35%;
+    max-width: 35%;
     /* text-align: center; */
     box-shadow: 4px 4px 2px 1px rgba(128, 124, 121, 0.43);
     border-radius: 10px;
   }
 
   .setting_container{
-   height: 160px;
+   height: 180px;
     padding: 15px;
     border: none;
     display: flex;
@@ -64,4 +64,10 @@
 
   .msg{
     color: red;
+  }
+
+  .textDes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
